@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Coda&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../static/images/favicon.png" type="image/.png">
+    <title>MakeItShort | Home</title>
+  </head>
+  <style>
+      :root {
+        --blue: #225378;
+        --white: #ffffff;
+        --lightblue: rgba(67, 95, 118, 0.512);
+      }
+      body {
+        font-family: 'Coda', cursive;
+        /* font-size: larger; */
+      }
+      .bi {
+        color: var(--blue);
+      }
+      .cards{
+        padding: 10px;
+        min-height: 250px;
+        
+      }
+      .btn-signup{
+        background-color: var(--blue);
+        color: var(--white);
+        padding: 10px 35px 10px 35px;
+      }
+      .btn-signup:hover{
+        color: var(--white) !important;
+      }
+      .btn-demo{
+        /* padding: 10px 30px 10px 30px; */
+        border: 2px solid var(--blue);
+        border-radius: 4px;
+      }
+      .btn-demo:hover{
+        background-color: var(--blue);
+        color: var(--white);
+      }
+      .banner{
+       padding: 20px 0px;
+       background-color: var(--lightblue);
+       margin: auto;
+       min-height: 250px;
+       align-content: center;
+      }
+      .banner>p{
+        font-size: 40px;
+        padding: 20px;
+        color: var(--blue);
+        word-spacing: 1px;
+      }
+      .points>h2{
+        color: var(--blue);
+        margin-top:0px !important;
+      }
+      .subpoints{
+        margin-top: 10px;
+        text-align: left;
+      }
+      .sub{
+        padding: 10px 0px;
+      }
+      .subpoints>div>p{
+        padding: 0px 0px 0px 10px;
+        word-spacing: 3px;
+        align-self: flex-start;
+      }
+      .subpoints>div>div{
+        margin-left: 5px;
+      }
+      .subpoints>div>div>i{
+        color: var(--blue);
+        font-size: 30px;
+      }
+      .footer{
+        background-color: var(--lightblue);
+        width: 100%;
+        min-height: 250px;
+      }
+  </style>
+
+  <body>
+    <!-- navbar  -->
+    <nav class="navbar navbar-expand-lg navbar-light p-4">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img
+            src="/static/images/logo.png"
+            width="150"
+            height="36"
+            alt="Logo"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <% if(logged){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <% }else{ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Signup</a>
+            </li>
+            <% } %>
+            <li class="nav-item">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- navbar end  -->
+    <!-- HEADER -->
+    <div class="container py-3">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-10 col-md-6 text-center">
+          
+
+          <img
+            src="/static/images/image.jpg"
+            class="img-fluid"
+            alt="Banner"
+          />
+          <h2>Your Brand on Your Links<span style="font-size:10px;">®</span></h2>
+          <p>MakeItShort is the industry-leading link management platform to brand, track and share short URLs using a custom domain name</p>
+          <div>
+            <a class="btn btn-lg mt-md-3 mb-3 mb-md-0 btn-signup" href="/signup">SignUp</a>
+            <a class="btn btn-lg mt-md-3 btn-demo" href="#">Request a Demo</a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+<!-- HEADER END-->
+<!-- Banner -->
+    <div class="container-fluid text-center mt-4 banner">
+      <p>Start branding your links for free</p>
+      <div><a class="btn btn-lg btn-signup" href="/dashboard">Start Creating Now</a></div>
+    </div>
+<!-- banner end -->
+   
+    
+    <!-- FEATURES -->
+    <div id="features" class="container pt-5 px-5">
+      <div class="row">
+        <div class="col-md-3 col-12 cards">
+          <div class="card text-center h-100" style="border: none !important;">
+            <!-- <i style="font-size: 3em;" class="bi bi-bar-chart-line"></i> -->
+            <img src="../static/images/custom_domains.svg" style="width: 35px;align-self: center;">
+            <div class="card-body">
+              <h3 class="card-title" style="color:var(--blue);margin-bottom: 20px;">Branded Domains</h3>
+              <p class="card-text" style="font-size: 16px;">You would never launch a TV commercial, Whatsapp video, online ad or press release without your brand being all over it. Why waste an opportunity and share URLs without your brand name in them?</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-12 cards">
+          <div class="card text-center h-100" style="border: none !important;">
+            <!-- <i style="font-size: 3em;" class="bi bi-bar-chart-line"></i> -->
+            <img src="../static/images/user-friendly_links.svg" style="width: 35px;align-self: center;">
+            <div class="card-body">
+              <h3 class="card-title" style="color:var(--blue);margin-bottom: 20px;">User-friendly links</h3>
+              <p class="card-text" style="font-size: 16px;">What if your links are used in print or spoken form? People often confuse certain letters with numbers, as well as struggle with capital letters. Tinycc specializes in mistake proof links that work in real life situations.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-12 cards">
+          <div class="card text-center h-100" style="border: none !important;">
+            <!-- <i style="font-size: 3em;" class="bi bi-bar-chart-line"></i> -->
+            <img src="../static/images/link_editing.svg" style="width: 35px;align-self: center;">
+            <div class="card-body">
+              <h3 class="card-title" style="color:var(--blue);margin-bottom: 20px;">Link editing</h3>
+              <p class="card-text" style="font-size: 16px;">Real-time link editing takes the risk out of publishing. Publish now and change where it points later. Update a default destination even if campaign is already live. Short or long URL can be modified anytime.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-12 cards">
+          <div class="card text-center h-100" style="border: none !important;">
+            <!-- <i style="font-size: 3em;" class="bi bi-bar-chart-line"></i> -->
+            <img src="../static/images/slug.svg" style="width: 35px;align-self: center;">
+            <div class="card-body">
+              <h3 class="card-title" style="color:var(--blue);margin-bottom: 20px;">Custom URL slugs</h3>
+              <p class="card-text" style="font-size: 16px;">Put an end to "customized link is already taken" messages. MakeItShort has private hash space - so you aren't limited by any other users. This lets you optimize your links with a custom keyword and increase CTR.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- FEATURES END -->
+
+  <!-- points -->
+    <div class="container">
+      <div class="row text-center points">
+        <h2>Why rebrand your links?</h2>
+        <div class="col-md-6 col-12">
+          <img src="../static/images/img1.png" style="width: 100%;height: 500px;">
+        </div>
+        <div class="col-md-6 col-12 mt-5">
+          <div class="subpoints">
+            <div class="d-flex sub">
+              <div><i class="bi bi-hand-index"></i></div> 
+              <p>Always a good investment when clicks go up</p>
+            </div>
+            <div class="d-flex sub">
+              <div><i class="bi bi-hand-thumbs-up"></i></div> 
+              <p>Give visitors confidence via higher transparency</p>
+            </div>
+            <div class="d-flex sub">
+              <div><i class="bi bi-megaphone"></i></div> 
+              <p>Brand building as your links circulate around the web</p>
+            </div>
+            <div class="d-flex sub">
+              <div><i class="bi bi-people"></i></div> 
+              <p> Your audience sees you as professional and trustworthy</p>
+            </div>
+            <div class="d-flex sub">
+              <div><i class="bi bi-asterisk"></i></div> 
+              <p> Low cost way to have a custom domain like the big brands</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- points end -->
+  <div class="container-fluid text-center mt-4">
+    <a class="btn btn-lg btn-signup" href="/dashboard">Start Creating Now</a>
+  </div>
+  <br>
+  <br>
+    
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

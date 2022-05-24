@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <!-- Bootstrap CDN  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Coda&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="../static/images/favicon.png" type="image/.png">
+        <title>MakeItShort | SignUp</title>
+    <style>
+        :root {
+        --blue: #225378;
+        --white: #ffffff;
+        --lightblue: rgba(67, 95, 118, 0.512);
+      }
+      body {
+        font-family: 'Coda', cursive;
+        /* font-size: larger; */
+      }
+
+      .customborder {
+        border-radius: 2%;
+        border: 2px solid var(--blue);
+      }
+      .btn-login{
+        /* padding: 10px 30px 10px 30px; */
+        border: 2px solid var(--blue);
+        border-radius: 4px;
+      }
+      .btn-login:hover{
+        background-color: var(--blue);
+        color: var(--white);
+      }
+      .btn-signup{
+        background-color: var(--blue);
+        color: var(--white);
+        padding: 10px 35px 10px 35px;
+      }
+      .btn-signup:hover{
+        color: var(--white) !important;
+      }
+      .card-link{
+        color: var(--blue);
+      }
+      .card-link:hover{
+        color: var(--lightblue);
+      }
+    </style>
+</head>
+
+<body>
+
+    <!-- navbar  -->
+    <nav class="navbar navbar-expand-lg navbar-light p-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/static/images/logo.png" width="150" height="36" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="">Signup</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar end  -->
+
+
+    <div class="container">
+        <h1 class="text-center p-3">Register Yourself</h1>
+        <div class="row ">
+            
+                <div class="col-md-6 col-12">
+                    <div style="margin: 0 auto;" class="p-5 customborder">                        
+                        <form action="/signup" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <div class="mb-3">
+                                <label for="email">Enter Your Email</label>
+                                <input type="email" class="form-control form-control-lg" name="email" id="email" autocomplete="off" placeholder="Email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password">Choose A Password</label>
+                                <input type="password" class="form-control form-control-lg" name="password" id="password" autocomplete="off" placeholder="Password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmpassword">Confirm Your Password</label>
+                                <input type="password" class="form-control form-control-lg" name="confirmpassword" id="confirmpassword" autocomplete="off" placeholder="Confirm Password">
+                            </div>
+                            <div class="d-grid gap-3 mb-3">
+                                <input type="submit" class="btn btn-lg btn-login" value="Register">
+                                <a class="btn btn-lg btn-signup" href="/google">Continue With Google</a>
+                            </div>
+                            <p>Already Registered ? <a class="card-link" href="/login">LOGIN Here</a> </p>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12 d-md-block d-none">
+                    <img src="../static/images/signup.png" style="width: 100%;height: 500px;" alt="" srcset="">
+                </div>
+            
+        </div>
+       
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
