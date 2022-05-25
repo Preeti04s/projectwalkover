@@ -4,7 +4,13 @@ const user = require('../model/user');
 const urls = require('../model/url');
 const bcryptjs = require('bcryptjs');
 const passport = require('passport');
+const mailer = require('./sendMail');
+const resetToken = require('../model/resetTokens');
+const randomstring = require("randomstring");
 const crypto = require('crypto');
+require('./passportLocal')(passport);
+require('./googleAuth')(passport);
+
 
 function checkAuth(req, res, next) {
     if (req.isAuthenticated()) {
@@ -25,18 +31,21 @@ router.get('/signup', (req, res) => {
     res.render("signup", { csrfToken: req.csrfToken() });
 });
 
-router.post('/signup', async (req, res) => {
+router.post('/signup',async (req, res) => {
     // get all the values 
     const { email, password, confirmpassword } = req.body;
     // check if the are empty 
     if (!email || !password || !confirmpassword) {
         res.render("signup", { err: "All Fields Required !", csrfToken: req.csrfToken() });
-    } else if ((!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(password))) {
-        res.render("signup", { err: "Password contains Capital Letter, Special Character and Min 8 Characters. ", csrfToken: req.csrfToken() });
-    } else if (password != confirmpassword) {
+    }else if((!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(password))){
+        res.render("signup",{err:"Password contains Capital Letter, Special Character and Min 8 Characters. ",csrfToken: req.csrfToken() });
+    }else if (password != confirmpassword) {
         res.render("signup", { err: "Password and ConfirmPassword Don't Match !", csrfToken: req.csrfToken() });
     } else {
-        // validate email and username and password skipping validation check if a user exists
+
+        // validate email and username and password 
+        // skipping validation
+        // check if a user exists
         user.findOne({ email: email }, function (err, data) {
             if (err) throw err;
             if (data) {
@@ -54,15 +63,19 @@ router.post('/signup', async (req, res) => {
                             password: hash,
                             googleId: null,
                             provider: 'email',
-                        }).save(async (err, data) => {
-                            if (err) throw err;    
+                        }).save (async(err, data) => {
+                            if (err) throw err;
+                            // login the user
+                            // use req.login
+                            // redirect , if you don't want to login
+                            // res.redirect('/login');
                             var token = crypto.randomBytes(32).toString('hex');
                             // add that to database
-                            await resetToken({ token: token, email: email }).save();
+                            await resetToken({ token: token, email:email }).save();
                             // send an email for verification
                             mailer.sendVerifyEmail(email, token);
-                            req.flash('success_messages', "Kindly verify your email !");
-                            res.redirect('/login');
+                           req.flash('success_messages', "Kindly verify your email !");
+                           res.redirect('/login');
                         });
                     })
                 });
@@ -84,4 +97,22 @@ router.get('/logout', (req, res) => {
     req.session.destroy(function (err) {
         res.redirect('/');
     });
+});
+
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email',] }));
+
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+    res.redirect('/dashboard');
+});
+
+router.get('/dashboard', checkAuth, (req, res) => {
+
+
+    urls.find({ owned : req.user.email }, (err, data) => {
+        if(err) throw err;
+        
+        res.render('dashboard', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), urls : data });
+        
+    });
+
 });
