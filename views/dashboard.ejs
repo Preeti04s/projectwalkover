@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <!-- Font  -->
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+ <link href="https://fonts.googleapis.com/css2?family=Kulim+Park&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Coda&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../static/images/favicon.png" type="image/.png">
+  <title>MakeItShort | Dashboard</title>
+</head>
+<style>
+  :root {
+    --blue: #225378;
+    --white: #ffffff;
+    --lightblue: rgba(67, 95, 118, 0.512);
+  }
+  body {
+    font-family: 'Coda', cursive;
+  }
+  .bi {
+    color: var(--blue);
+  }
+  .eye>i:hover{
+    color: var(--white) !important;
+  }
+  .customborder {
+    border-radius: 2%;
+    border: 2px solid var(--blue);
+  }
+
+  .card {
+      border: none;
+      border-radius: 25px;
+  }
+  .footer{
+    background-color: var(--lightblue);
+    width: 100%;
+    min-height: 250px;
+  }
+  .btn-signup{
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 10px 35px 10px 35px;
+  }
+  .btn-signup:hover{
+    color: var(--white) !important;
+  }
+  .btn-create{
+    /* padding: 10px 30px 10px 30px; */
+    border: 2px solid var(--blue);
+    border-radius: 4px;
+  }
+  .btn-create:hover{
+    background-color: var(--blue);
+    color: var(--white);
+  }
+  .headertext{
+    min-height: 250px;
+    align-items: left;
+  }
+  .headertext>h2{
+    margin-top: 130px;
+  }
+  @media only screen and (max-width: 576px){
+    .headertext>h2{
+       margin-top: 30px;
+    }
+    .headertext{
+      text-align: center;
+    }
+  }
+  .headertext>p{
+    margin-top: 30px;
+    font-size: 18px;
+  }
+</style>
+<body>
+  <!-- navbar  -->
+  <nav class="navbar navbar-expand-lg navbar-light p-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="/static/images/logo.png" width="150" height="36" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/index">Home</a>
+          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">Signup</a>
+              </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar end  -->
+  <!-- header -->
+<div class="container mb-5">
+ 
+ 
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+      <strong>ATTENTION !</strong> Please verify your account to continue using our services.
+      <a href="/user/send-verification-email">Re-send Verification Email</a>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>SUCCESS</strong> Verification Email Sent Sucessfully. Valid Only for 20 minutes.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+  <div class="row">
+    <div class="col-md-6 col-12 headertext">
+      <h2>No technical expertise required</h2>
+      <p>There’s no need to involve your tech team, MakeItShort will handle all of the technical setup for you. Just pick the domain that suits you best, and we’ll have you sharing branded links in no time. If you need any help, get in touch.</p>
+      <a class="btn btn-lg mt-3 btn-signup" href="#create">Start Creating Now</a>
+    </div>
+    <div class="col-md-6 col-12">
+      <img src="../static/images/dashboard.svg" style="width: 100%;height: 500px;" alt="" srcset="">
+    </div>
+  </div>
+</div>
+<!-- header end -->
+<!-- create url -->
+    <div class="container">
+      <h2 class="text-center mb-5" id="create">Create your short Urls</h2>
+      <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 p-5 mx-auto bg-light">
+          <form action="/create"  method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <div class="mb-3">
+              <label for="url">Enter Long Url</label>
+              <input type="url" class="form-control form-control-lg" name="original" id="url"
+                autocomplete="off" placeholder="Original Long URL" />
+            </div>
+            <div class="mb-3">
+              <label for="short">Your Short slug</label>
+              <input type="text" class="form-control form-control-lg" name="short" id="short"
+                autocomplete="off" placeholder="If you have any preference." />
+            </div>
+            <div class="d-grid gap-3 mb-3">
+              <input type="submit" class="btn btn-lg btn-block btn-create"
+                value="Create Url" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- create url end-->
+    <!-- / -->
+    <!-- my urls -->
+    <div class="container p-5"> 
+      <% if(urls.length != 0){ %>
+      <h2 class="text-center mb-5">Your Urls and Performance</h2>
+      <div class="row g-4 text-center">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col-1">S.No.</th>
+              <th scope="col-5" class="d-md-block d-none">Long Url</th>
+              <th scope="col-3">Short Url</th>
+              <th scope="col-3">Info</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Lorem, ipsum.</th>
+              <td class="d-md-block d-none" style="max-width: 50vw;overflow-wrap: break-word;"><a href="#">Lorem ipsum dolor sit amet.</a></td>
+              <td><a href="#">lorem</a></td>
+              <td><a type="button" href="#" class="btn btn-create eye"><i class="bi bi-eye"></i></a></td>
+            </tr>                     
+        </tbody>
+      </table>
+        <h2 class="text-center">No Urls created By You 😔😔</h2>
+      </div>
+    </div>
+     <!-- my urls end-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+</body> 
+</html>
