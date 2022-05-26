@@ -10,6 +10,7 @@ const randomstring = require("randomstring");
 const crypto = require('crypto');
 require('./passportLocal')(passport);
 require('./googleAuth')(passport);
+const userRoutes = require('./accountRoutes');
 
 
 function checkAuth(req, res, next) {
@@ -116,3 +117,54 @@ router.get('/dashboard', checkAuth, (req, res) => {
     });
 
 });
+
+router.post('/create', checkAuth, (req, res) => {
+    var { original, short } = req.body;
+    short.trim();
+    if (!original){
+        urls.find({ owned : req.user.email }, (err, data) => {
+            if(err) throw err;
+            res.render('dashboard', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), urls : data,err:"Empty Fields !" });
+        });
+    } else {
+        var counturls=original.split(",")
+        var arr=[];
+        for(var i=0;i<counturls.length;i++){
+            if(counturls[i].trim()==''){
+                continue;
+            }else{
+                arr.push(counturls[i]);
+            }
+        }
+        urls.findOne({ slug: short }, (err, data) => {
+            if (err) throw err;
+            else if (data) {
+                urls.find({ owned : req.user.email }, (err, data) => {
+                    if(err) throw err;
+                    res.render('dashboard', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(),urls : data, err: "Try Different Short Url, This exists !" });
+                });
+            }else if(arr.length>1 && short){
+                urls.find({ owned : req.user.email }, (err, data) => {
+                    if(err) throw err;
+                    res.render('dashboard', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(),urls : data, err: "Slug should be empty for multiple urls." });
+                });
+            } else {
+                var array=[];
+                for(var i=0;i<arr.length;i++){
+                    if(short==""){
+                        short=randomstring.generate(10);
+                    }else if(arr.length>1){
+                        short=randomstring.generate(10);
+                    }
+                    array.push({originalUrl:arr[i],slug:short,owned:req.user.email});
+
+                }
+                urls.insertMany(array).then((data)=>{
+                    res.redirect('/dashboard');
+                })
+            }
+        })
+    }
+
+});
+router.use(userRoutes);
