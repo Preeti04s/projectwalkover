@@ -12,7 +12,6 @@ require('./passportLocal')(passport);
 require('./googleAuth')(passport);
 const userRoutes = require('./accountRoutes');
 
-
 function checkAuth(req, res, next) {
     if (req.isAuthenticated()) {
         res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, post-check=0, pre-check=0');
@@ -23,6 +22,43 @@ function checkAuth(req, res, next) {
     }
 }
 
+router.get('/admin',(req,res)=>{
+    user.find().then((data)=>{
+        res.render('admin',{users:data});
+    })
+})
+router.get('/admin/delete/:email',(req,res)=>{
+   urls.deleteMany({"owned":req.params.email}).then((data)=>{
+    user.findOneAndDelete({"email":req.params.email}).then((deleteduser)=>{
+        res.redirect('/admin');  
+    })
+   })
+})
+router.get('/admin/view/:email',(req,res)=>{
+    urls.find({"owned":req.params.email}).then((data)=>{
+        res.render('userUrls',{urls:data});
+    })
+})
+router.get('/admin/deleteUrl/:slug',(req,res)=>{
+     urls.findOneAndDelete({"slug":req.params.slug}).then((deletedurl)=>{
+         const user=deletedurl.owned;
+         res.redirect('/admin/view/'+user); 
+        
+     })
+ })
+
+router.get('/admin/delUrl/:slug',(req,res)=>{
+    urls.findOneAndDelete({"slug":req.params.slug}).then((deletedurl)=>{
+        const user=deletedurl.owned;
+        res.redirect('/admin/urls'); 
+       
+    })
+})
+ router.get('/admin/urls',(req,res)=>{
+    urls.find().then((data)=>{
+        res.render('allurls',{urls:data})
+    })
+ })
 
 router.get('/login', (req, res) => {
     res.render("login", { csrfToken: req.csrfToken() });
@@ -118,6 +154,7 @@ router.get('/dashboard', checkAuth, (req, res) => {
 
 });
 
+
 router.post('/create', checkAuth, (req, res) => {
     var { original, short } = req.body;
     short.trim();
@@ -167,6 +204,7 @@ router.post('/create', checkAuth, (req, res) => {
     }
 
 });
+
 router.use(userRoutes);
 router.get('/:slug?', async (req, res) => {
     if (req.params.slug != undefined) {

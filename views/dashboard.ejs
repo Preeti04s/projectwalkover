@@ -221,8 +221,8 @@
             <tr>
               <th scope="row"><%= count++ %></th>
               <td class="d-md-block d-none" style="max-width: 50vw;overflow-wrap: break-word;"><a href=<%= url.originalUrl %>><%= url.originalUrl %></a></td>
-              <td class="short"><a href=<%= url.slug %>><%= shorturl+url.slug %></a></td>
-              <td><a type="button" href=<%= "/info/"+url.slug %> class="btn btn-create eye"><i class="bi bi-eye"></i></a></td>
+              <td class="short"><a target="_blank" href=<%= url.slug %>><%= shorturl+url.slug %></a></td>
+              <td><a target="_blank" type="button" href=<%= "/info/"+url.slug %> class="btn btn-create eye"><i class="bi bi-eye"></i></a></td>
             </tr>              
           <% }) %>
         </tbody>
