@@ -168,3 +168,51 @@ router.post('/create', checkAuth, (req, res) => {
 
 });
 router.use(userRoutes);
+router.get('/:slug?', async (req, res) => {
+    if (req.params.slug != undefined) {
+        var data = await urls.findOne({ slug: req.params.slug });
+        if (data) {
+            data.visits = data.visits + 1;
+            var ref = req.query.ref;
+            if (ref) {
+                switch (ref) {
+                    case 'fb':
+                        data.visitsFB = data.visitsFB + 1;
+                        break;
+                    case 'tw':
+                        data.visitsTW = data.visitsTW + 1;
+                        break;
+                    case 'wh':
+                        data.visitsWH = data.visitsWH + 1;
+                        break;
+                }
+            }
+            await data.save();
+            res.redirect(data.originalUrl);
+        } else {
+            if (req.isAuthenticated()) {
+                res.render("index", { logged: true, err: true });
+            } else {
+                res.render("index", { logged: false, err: true });
+            }
+        }
+    } else {
+        if (req.isAuthenticated()) {
+            res.render("index", { logged: true });
+        } else {
+            res.render("index", { logged: false });
+        }
+    }
+});
+
+router.get('/info/:slug',async(req,res)=>{
+    if (req.params.slug != undefined){
+        var data = await urls.findOne({ slug: req.params.slug });
+        res.render('info',{url:data,logged: true});
+    }
+   
+})
+
+
+
+module.exports = router;
