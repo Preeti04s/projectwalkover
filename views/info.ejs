@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kulim+Park&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"
+        integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="shortcut icon" href="../static/images/favicon.png" type="image/.png">
+    <title>MakeItShort | Url Info</title>
+</head>
+<style>
+    .mt-100 {
+        margin-top: 100px
+    }
+
+    .modal-title {
+        font-weight: 900
+    }
+
+    .modal-content {
+        border-radius: 13px
+    }
+
+    .modal-body {
+        color: #3b3b3b
+    }
+
+    .img-thumbnail {
+        border-radius: 33px;
+        width: 61px;
+        height: 61px
+    }
+
+    .fab:before {
+        position: relative;
+        top: 13px
+    }
+
+    .smd {
+        width: 200px;
+        font-size: small;
+        text-align: center
+    }
+
+    .modal-footer {
+        display: block
+    }
+
+    .ur {
+        border: none;
+        background-color: #e6e2e2;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px
+    }
+
+    .cpy {
+        border: none;
+        background-color: #e6e2e2;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+        cursor: pointer
+    }
+
+    button.focus,
+    button:focus {
+        outline: 0;
+        box-shadow: none !important
+    }
+
+    .ur.focus,
+    .ur:focus {
+        outline: 0;
+        box-shadow: none !important
+    }
+
+    .message {
+        font-size: 11px;
+        color: #ee5535
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light p-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/static/images/logo.png" width="150" height="36" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">Signup</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container p-5">
+        <h2 class="text-center">Your Url Performance</h2>
+        <div class="row row-cols-1 g-4 text-center">
+            <div class="col">
+                <div class="container shadow rounded-3 bg-light p-4">
+                    <div class="container row justify-content-around">
+                        <div class="col-12 col-md-4 col-lg-3  mb-3">
+                            <div class="card customcard  ratio ratio-1x1 shadow">
+                                <div class="d-flex flex-column justify-content-center align-item-center">
+                                    <p>Total <br />Visits</p>
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3  mb-3">
+                            <div class="card customcard  ratio ratio-1x1 shadow">
+                                <div class="d-flex flex-column justify-content-center align-item-center">
+                                    <p>Facebook <br />Visits</p>
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3  mb-3">
+                            <div class="card customcard  ratio ratio-1x1 shadow">
+                                <div class="d-flex flex-column justify-content-center align-item-center">
+                                    <p>Twitter <br />Visits </p>
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-3  mb-3">
+                            <div class="card customcard  ratio ratio-1x1 shadow">
+                                <div class="d-flex flex-column justify-content-center align-item-center">
+                                    <p>Whatsapp <br /> Visits</p>
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-centent-center">
+                        <div class="col-12 col-md-6 col-lg-5 mx-auto ">
+                            <canvas id="<%= url['_id'] %>" width="400" height="400"></canvas>
+                            <h2>No visits till now</h2>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary mx-auto mt-5" data-toggle="modal"
+                        data-target="#exampleModal">
+                        Share on social media </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content col-12">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Share</h5> <button type="button" class="close"
+                                        data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="icon-container1 d-flex">
+                                        <div class="smd"><a class="twitter-btn"><i
+                                                    class="img-thumbnail fab fa-twitter fa-2x"
+                                                    style="color:#02114e;background-color: aliceblue;cursor: pointer;"></i></a>
+                                            <p>Twitter</p>
+                                        </div>
+                                        <div class="smd"><a class="facebook-btn"> <i
+                                                    class="img-thumbnail fab fa-facebook fa-2x"
+                                                    style="color: #3b5998;background-color: #eceff5;cursor: pointer;"></i></a>
+                                            <p>Facebook</p>
+                                        </div>
+                                        <div class="smd" style="display: block !important;">
+                                            <a class="sms-btn"
+                                                style="display: block !important;align-items: center;text-align: center;">
+                                                <i class="img-thumbnail fas fa-sms fa-2x"
+                                                    style="color: #0077b5;background-color: #eceff5;cursor: pointer;padding-top:15px;"></i>
+                                            </a>
+                                            <p>SMS</p>
+                                        </div>
+                                        <div class="smd"><a class="reddit-btn"> <i
+                                                    class="img-thumbnail fab fa-reddit fa-2x "
+                                                    style="color: #FF4500;background-color: #f5d8d8;cursor: pointer;"></i></a>
+                                            <p>Reddit</p>
+                                        </div>
+                                    </div>
+                                    <div class="icon-container2 d-flex">
+                                        <div class="smd"><a class="whatsapp-btn"><i
+                                                    class="img-thumbnail fab fa-whatsapp fa-2x"
+                                                    style="color: #25D366;background-color: #cef5dc;cursor: pointer;"></i></a>
+                                            <p>Whatsapp</p>
+                                        </div>
+                                        <div class="smd"><a class="pinterest-btn"><i
+                                                    class="img-thumbnail fab fa-pinterest fa-2x"
+                                                    style="color: #E60023;background-color: #fcdad7;cursor: pointer;"></i></a>
+                                            <p>Pinterest</p>
+                                        </div>
+                                        <div class="smd"><a class="telegram-btn"><i
+                                                    class="img-thumbnail fab fa-telegram fa-2x"
+                                                    style="color: #4c6ef5;background-color: aliceblue;cursor: pointer;"></i></a>
+                                            <p>Telegram</p>
+                                        </div>
+                                        <div class="smd"><a class="gmail-btn"><i
+                                                    class="img-thumbnail fab fa-google fa-2x"
+                                                    style="color: #db3236;background-color: #f1f4ed;cursor: pointer;"></i></a>
+                                            <p>Gmail</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer"> <label style="font-weight: 600">Shortened Url <span
+                                            class="message"></span></label><br />
+                                    <div class="row"> <input class="col-10 ur" type="url"
+                                            placeholder="https://sort-s.herokuapp.com/<%= url['slug'] %>" readonly
+                                            id="myInput" aria-describedby="inputGroup-sizing-default"
+                                            style="height: 40px;">
+                                        <button class="col-2 cpy" onclick="myFunction()">
+                                            <i class="far fa-clone"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+        integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

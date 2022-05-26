@@ -9,6 +9,7 @@ var smtpTransport = nodemailer.createTransport({
 });
 
 module.exports.sendResetEmail = async (email, token) => {
+   // change first part to your domain
   var url = "https://sort-s.herokuapp.com/user/reset-password?token=" + token;
 
   await smtpTransport.sendMail({
@@ -21,6 +22,7 @@ module.exports.sendResetEmail = async (email, token) => {
 };
 
 module.exports.sendVerifyEmail = async (email, token) => {
+  // change first part to your domain
   var url = "https://sort-s.herokuapp.com/user/verifyemail?token=" + token;
 
   await smtpTransport.sendMail({

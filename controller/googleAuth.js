@@ -10,12 +10,13 @@ module.exports = function (passport) {
         clientSecret: clientSecreT,
         callbackURL: "https://sort-s.herokuapp.com/google/callback"
     }, (accessToken, refreshToken, profile, done) => {
-        console.log(profile.emails[0].value);
 
         // find if a user exist with this email or not
         user.findOne({ email: profile.emails[0].value }).then((data) => {
             if (data) {
                 // user exists
+                // update data
+                // I am skipping that part here, may Update Later
                 return done(null, data);
             } else {
                 // create a user
